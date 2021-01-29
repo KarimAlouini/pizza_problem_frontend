@@ -35,14 +35,15 @@ export default {
     };
   },
   methods: {
+    //Login User() 
     async handleSubmit() {
-      const response = await axios
-        .post("auth/login", {
-          username: this.username,
-          password: this.password,
-        })
-        .then()
-        .catch(this.$router.push("register"));
+      const response = await axios.post("auth/login", {
+        username: this.username,
+        password: this.password,
+      });
+      //Redirect to Home page
+      this.$router.push("/home");
+      //Save token to session storage
       sessionStorage.setItem("token", response.data.token);
     },
   },

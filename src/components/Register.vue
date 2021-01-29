@@ -35,11 +35,13 @@ export default {
     };
   },
   methods: {
+    //Register User() 
     async handleSubmit() {
       await axios.post("auth/register", {
         username: this.username,
         password: this.password,
       });
+      //Redirect to Login page
       this.$router.push("login");
     },
   },

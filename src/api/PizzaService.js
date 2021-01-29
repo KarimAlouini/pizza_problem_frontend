@@ -1,9 +1,9 @@
-import Api from '@/services/Api'
+import axios from 'axios'
 
 export default {
 
     async GetMostUsersLiked() {
-        const response = await Api().get('user/GetMostUsersLiked')
+        const response =  await axios.get('user/UsersLike')
         return response
     },
 }

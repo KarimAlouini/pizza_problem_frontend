@@ -1,23 +1,46 @@
 <template>
-  <button
-    @click.prevent="getMostLiked()"
-    type="button"
-    class="btn btn-success"
-  ></button>
+  <canvas ref="myChart"></canvas>
 </template>
 <script>
-import axios from "axios";
+import { Bar } from "vue-chartjs";
+import Chart from "chart.js";
 export default {
   name: "Top10",
-  data() {},
-  methods: {
-    async getMostLiked() {
-      const response = await axios.get("user/UsersLike");
-      response.data.forEach((e) => {
-        console.log(e.name);
-        console.log(e.numberOfLike);
-      });
+  extends: Bar,
+  props: {
+    label: {
+      type: Array,
     },
+    chartData: {
+      type: Array,
+    },
+  },
+  async mounted() {
+    await new Chart(this.$refs.myChart, {
+      type: "bar",
+      data: {
+        labels: this.label,
+        datasets: [
+          {
+            label: "Press to get USERS",
+            borderColor: "rgba(207, 0, 15, 1)",
+            backgroundColor: "rgba(207, 0, 15, 1)",
+            data: this.chartData,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
   },
 };
 </script>

@@ -1,4 +1,4 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://localhost:44325/api/';
+axios.defaults.baseURL = 'http://localhost:5000/api/';
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
