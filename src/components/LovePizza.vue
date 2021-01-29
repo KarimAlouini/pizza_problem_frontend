@@ -53,7 +53,6 @@
 
 <script>
 import axios from "axios";
-import api from "../api/PizzaService";
 import Top10 from "../components/Top10.vue";
 
 export default {
@@ -70,9 +69,8 @@ export default {
   },
   //Get Top 10 user liked PIZZA
   async created() {
-    this.arrUsers = await api.GetMostUsersLiked();
     try {
-      const users = await axios.get("user/UsersLike");
+      const users = await axios.get('user/UsersLike');
       users.data.forEach((e) => {
         this.labels.push(e.name);
         this.confirmed.push(e.numberOfLike);
